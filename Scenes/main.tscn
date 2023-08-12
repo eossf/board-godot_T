@@ -1,0 +1,45 @@
+[gd_scene load_steps=3 format=3 uid="uid://cip1p3eljxvh2"]
+
+[ext_resource type="Script" path="res://Src/main.gd" id="1_pg5sg"]
+[ext_resource type="Texture2D" uid="uid://c0687thyrjpvd" path="res://Images/720x1008_pixel_board_game-v0.0.0.png" id="2_auno6"]
+
+[node name="main" type="Node2D"]
+script = ExtResource("1_pg5sg")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+offset_right = 719.0
+offset_bottom = 1026.0
+theme_override_constants/margin_left = -20
+theme_override_constants/margin_top = -20
+theme_override_constants/margin_right = -20
+theme_override_constants/margin_bottom = -20
+
+[node name="ReferenceRect" type="ReferenceRect" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+
+[node name="background" type="Sprite2D" parent="CanvasLayer/MarginContainer/ReferenceRect"]
+unique_name_in_owner = true
+z_index = -1
+position = Vector2(390.375, 531)
+texture = ExtResource("2_auno6")
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
+[node name="Button" type="Button" parent="CanvasLayer2"]
+z_index = 1
+offset_left = 249.0
+offset_top = 496.0
+offset_right = 495.0
+offset_bottom = 578.0
+theme_override_font_sizes/font_size = 48
+text = "Push Here"
+
+[node name="timer_background" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.01
+autostart = true
+
+[connection signal="pressed" from="CanvasLayer2/Button" to="." method="_on_button_pressed"]
+[connection signal="timeout" from="timer_background" to="." method="_on_timer_background_timeout"]
