@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://cip1p3eljxvh2"]
+[gd_scene load_steps=5 format=3 uid="uid://chtwuf512erf6"]
 
 [ext_resource type="Script" path="res://Src/main.gd" id="1_pg5sg"]
-[ext_resource type="Texture2D" uid="uid://c0687thyrjpvd" path="res://Images/720x1008_pixel_board_game-v0.0.0.png" id="2_auno6"]
+[ext_resource type="Texture2D" uid="uid://c8hjwhki3ih3b" path="res://Images/720x1008_pixel_board_game-v0.0.0-001.png" id="2_twu81"]
+[ext_resource type="Texture2D" uid="uid://q0pa55kjvieb" path="res://Images/king.png" id="3_kqy7i"]
+[ext_resource type="Texture2D" uid="uid://c7qke854w8sim" path="res://Images/tower.png" id="4_4y4uc"]
 
-[node name="main" type="Node2D"]
+[node name="Main" type="Node2D"]
 script = ExtResource("1_pg5sg")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -22,24 +24,28 @@ layout_mode = 2
 [node name="background" type="Sprite2D" parent="CanvasLayer/MarginContainer/ReferenceRect"]
 unique_name_in_owner = true
 z_index = -1
-position = Vector2(390.375, 531)
-texture = ExtResource("2_auno6")
+position = Vector2(390, 534)
+scale = Vector2(1.01667, 1.01984)
+texture = ExtResource("2_twu81")
 
-[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+[node name="King" type="Sprite2D" parent="CanvasLayer/MarginContainer/ReferenceRect"]
+z_index = 10
+z_as_relative = false
+position = Vector2(398, 977)
+rotation = 3.14159
+scale = Vector2(0.123047, 0.121094)
+texture = ExtResource("3_kqy7i")
 
-[node name="Button" type="Button" parent="CanvasLayer2"]
-z_index = 1
-offset_left = 249.0
-offset_top = 496.0
-offset_right = 495.0
-offset_bottom = 578.0
-theme_override_font_sizes/font_size = 48
-text = "Push Here"
+[node name="tower" type="Sprite2D" parent="CanvasLayer/MarginContainer/ReferenceRect"]
+position = Vector2(403, 429)
+scale = Vector2(0.148438, 0.133789)
+texture = ExtResource("4_4y4uc")
 
-[node name="timer_background" type="Timer" parent="."]
+[node name="Grid" type="Node2D" parent="CanvasLayer/MarginContainer/ReferenceRect"]
 unique_name_in_owner = true
-wait_time = 0.01
-autostart = true
+position = Vector2(20, 20)
 
-[connection signal="pressed" from="CanvasLayer2/Button" to="." method="_on_button_pressed"]
-[connection signal="timeout" from="timer_background" to="." method="_on_timer_background_timeout"]
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Level" type="Node2D" parent="."]
+z_index = 1
